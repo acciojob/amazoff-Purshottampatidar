@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class OrderController {
 
 
-    @Autowired
-    ServiceLayer serviceLayer;
+
+    public ServiceLayer serviceLayer=new ServiceLayer();
     @PostMapping("/add-order")
     public ResponseEntity<String> addOrder(@RequestBody Order order){
         serviceLayer.addOrder(order);
@@ -31,7 +31,7 @@ public class OrderController {
     @PostMapping("/add-partner/{partnerId}")
     public ResponseEntity<String> addPartner(@PathVariable String partnerId){
 
-        serviceLayer.addPartnerToDb(partnerId);
+
         return new ResponseEntity<>("New delivery partner added successfully", HttpStatus.CREATED);
     }
 
@@ -39,7 +39,7 @@ public class OrderController {
     public ResponseEntity<String> addOrderPartnerPair(@RequestParam String orderId, @RequestParam String partnerId){
 
         //This is basically assigning that order to that partnerId
-        serviceLayer.addOrderPartnerToDb(orderId,partnerId);
+
         return new ResponseEntity<>("New order-partner pair added successfully", HttpStatus.CREATED);
     }
 
